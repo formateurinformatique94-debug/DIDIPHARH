@@ -18,7 +18,7 @@
 
     <title>DIDI-PHARMA — Agence de Promotion & Distribution Pharmaceutique</title>
 
-    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -27,14 +27,22 @@
     <header class="site-header" role="banner">
       <div class="container header-inner">
         <a class="brand" href="#accueil" aria-label="DIDI-PHARMA (retour en haut)">
-          <img class="brand-logo" src="logo.svg" alt="" width="44" height="44" />
+          <img class="brand-logo" src="logo.jpeg" alt="" width="44" height="44" />
           <span class="brand-text">
             <span class="brand-name">DIDI-PHARMA</span>
             <span class="brand-tag">Agence de Promotion des Produits Pharmaceutiques</span>
           </span>
         </a>
 
-        <nav class="nav" aria-label="Navigation principale">
+        <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false">
+          <span class="sr-only">Ouvrir le menu</span>
+          <span class="nav-toggle-bar" aria-hidden="true"></span>
+          <span class="nav-toggle-bar" aria-hidden="true"></span>
+          <span class="nav-toggle-bar" aria-hidden="true"></span>
+        </button>
+
+        <div class="nav-overlay" data-nav-overlay hidden></div>
+        <nav class="nav" id="site-nav" aria-label="Navigation principale">
           <a href="#apropos">Qui sommes-nous ?</a>
           <a href="#atouts">Nos atouts</a>
           <a href="#enregistrement">Enregistrement</a>
@@ -244,6 +252,14 @@
                   <dt>Email</dt>
                   <dd><a href="mailto:contact@didi-pharma.example">contact@didi-pharma.example</a></dd>
                 </div>
+                <div>
+                  <dt>À propos de nous</dt>
+                  <dd>
+                    NIF : 085155063P<br />
+                    Numéro d’immatriculation national : 42409195397053X<br />
+                    Immatriculée au RCCM sous le numéro : MA.Bko.2024.B.3005
+                  </dd>
+                </div>
               </dl>
               <p class="founder">Fondateur&nbsp;: <strong>Diarra Aboubacar</strong></p>
             </article>
@@ -277,7 +293,7 @@
     <footer class="site-footer" role="contentinfo">
       <div class="container footer-inner">
         <div class="footer-brand">
-          <img src="assets/logo.svg" alt="" width="40" height="40" />
+          <img src="logo.jpeg" alt="" width="40" height="40" />
           <div>
             <div class="footer-name">DIDI-PHARMA</div>
             <div class="footer-tag">Ensemble vers le succès&nbsp;!</div>
@@ -294,6 +310,38 @@
     <script>
       document.getElementById("year").textContent = String(new Date().getFullYear());
     </script>
+    <script>
+      (function () {
+        const toggle = document.querySelector(".nav-toggle");
+        const nav = document.getElementById("site-nav");
+        const overlay = document.querySelector("[data-nav-overlay]");
+        if (!toggle || !nav || !overlay) return;
+
+        const close = () => {
+          document.body.classList.remove("nav-open");
+          toggle.setAttribute("aria-expanded", "false");
+          overlay.hidden = true;
+        };
+
+        const open = () => {
+          document.body.classList.add("nav-open");
+          toggle.setAttribute("aria-expanded", "true");
+          overlay.hidden = false;
+        };
+
+        toggle.addEventListener("click", () => {
+          const expanded = toggle.getAttribute("aria-expanded") === "true";
+          expanded ? close() : open();
+        });
+
+        overlay.addEventListener("click", close);
+
+        nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", close));
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") close();
+        });
+      })();
+    </script>
   </body>
 </html>
-
