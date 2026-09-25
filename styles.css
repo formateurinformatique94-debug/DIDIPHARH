@@ -755,3 +755,71 @@ textarea:focus {
     padding: 1.6rem;
   }
 }
+
+
+/* Liste des partenaires */
+.partners-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0;
+}
+
+/* Chaque partenaire */
+.partner-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    padding: 12px;
+    margin-bottom: 12px;
+
+    background: #ffffff;
+    border-radius: 12px;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+
+    transition: all 0.3s ease;
+}
+
+/* Effet au survol */
+.partner-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Logo */
+.partner-logo {
+    width: 60px;
+    height: 60px;
+
+    object-fit: contain;
+    border-radius: 10px;
+
+    background: #fff;
+    flex-shrink: 0;
+}
+
+/* Informations */
+.partner-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Nom */
+.partner-info strong {
+    font-size: 15px;
+    color: #333;
+}
+
+/* Lien */
+.partner-info a {
+    font-size: 13px;
+    color: #1769aa;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.partner-info a:hover {
+    text-decoration: underline;
+}
